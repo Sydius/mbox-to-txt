@@ -28,7 +28,7 @@ def unquoted_line(line):
     while line.startswith('>'):
         line = line[1:]
         quote_depth += 1
-    return (line, quote_depth)
+    return line, quote_depth
 
 
 def unstuff_line(line):
@@ -52,12 +52,12 @@ def unflow_line(line, delsp):
     :return: (processed line, soft-broken)
     """
     if len(line) < 1:
-        return (line, False)
+        return line, False
     if line.endswith(' '):
         if delsp:
             line = line[:-1]
-        return (line, True)
-    return (line, False)
+        return line, True
+    return line, False
 
 
 def unflow_text(text, delsp):
@@ -125,15 +125,15 @@ def message_to_text(message):
     return text
 
 
-def print_mailbox(mailbox, author):
+def print_mailbox(mb, author):
     """
     Print the contents of a mailbox to standard-out, excluding messages to 'author' and not from 'author'.
 
-    :param mailbox: Mailbox to print.
+    :param mb: Mailbox to print.
     :param author: Excludes messages to and not from this author.
     :return: Nothing.
     """
-    for message in mailbox:
+    for message in mb:
         if not message['From']:
             continue
         if author not in message['From']:
