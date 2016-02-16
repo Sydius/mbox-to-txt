@@ -1,5 +1,7 @@
+import argparse
 import mailbox
 import re
+
 
 # Patterns of text to delete from messages.
 DELETION_PATTERS = [
@@ -162,8 +164,13 @@ def print_mailbox(mb, author):
 
 
 def main():
-    mb = mailbox.mbox('Sent.mbox', create=False)
-    print_mailbox(mb, '<sydius@gmail.com>')
+    parser = argparse.ArgumentParser(description='Convert mbox to text file.')
+    parser.add_argument('mbox_file', help='.mbox file to parse')
+    parser.add_argument('author', help='author to exclude')
+    args = parser.parse_args()
+
+    mb = mailbox.mbox(args.mbox_file, create=False)
+    print_mailbox(mb, args.author)
 
 
 if __name__ == '__main__':
