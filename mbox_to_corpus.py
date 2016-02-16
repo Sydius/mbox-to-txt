@@ -1,6 +1,22 @@
 import mailbox
 import re
 
+# Patterns of text to delete from messages.
+DELETION_PATTERS = [
+    # Reply text:
+    r'(\n|^)On.*\n?.*wrote:\n+(.|\n)*$',
+    r'(\n|^)From:(.|\n)*$',
+
+    # Forwarded messages:
+    r'(\n|^)---------- Forwarded message ----------(.|\n)*$',
+
+    # PGP:
+    r'(\n|^)-----BEGIN PGP MESSAGE-----\n(.|\n)*-----END PGP MESSAGE-----\n',
+
+    # Embedded links:
+    r'<[^ ]+>',
+]
+
 
 def munge_message(text):
     """
@@ -9,11 +25,8 @@ def munge_message(text):
     :param text: The e-mail message.
     :return: The munged e-mail message.
     """
-    text = re.sub(r'(\n|^)On.*\n?.*wrote:\n+(.|\n)*$', '', text)
-    text = re.sub(r'(\n|^)From:(.|\n)*$', '', text)
-    text = re.sub(r'(\n|^)---------- Forwarded message ----------(.|\n)*$', '', text)
-    text = re.sub(r'(\n|^)-----BEGIN PGP MESSAGE-----\n(.|\n)*-----END PGP MESSAGE-----\n', '', text)
-    text = re.sub(r'<[^ ]+>', '', text)
+    for pattern in DELETION_PATTERS:
+        text = re.sub(pattern, '', text)
     return text
 
 
