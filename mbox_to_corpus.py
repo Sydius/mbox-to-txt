@@ -1,3 +1,5 @@
+# See README.md for information and usage.
+
 import argparse
 import mailbox
 import re
