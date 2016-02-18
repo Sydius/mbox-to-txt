@@ -24,7 +24,7 @@ DELETION_PATTERS = [
 
 def munge_message(text):
     """
-    Munge an e-mail message (in text form).
+    Munges an e-mail message (in text form).
 
     :param text: The e-mail message.
     :return: The munged e-mail message.
@@ -36,7 +36,7 @@ def munge_message(text):
 
 def unquoted_line(line):
     """
-    Unquote an e-mail message line according to RFC 3676.
+    Unquotes an e-mail message line according to RFC 3676.
 
     :param line: The (possibly quoted) message line.
     :return: (unquoted line, quote depth).
@@ -50,7 +50,7 @@ def unquoted_line(line):
 
 def unstuff_line(line):
     """
-    Unstuff an e-mail message line according to RFC 3637.
+    Unstuffs an e-mail message line according to RFC 3637.
 
     :param line: The (possibly stuffed) message line.
     :return: The unstuffed message line.
@@ -62,7 +62,7 @@ def unstuff_line(line):
 
 def unflow_line(line, delsp):
     """
-    Unflow an e-mail message line according to RFC 3637.
+    Unflows an e-mail message line according to RFC 3637.
 
     :param line: The (possibly soft-broken) message line.
     :param delsp: Whether or not soft-break spaces should be deleted.
@@ -79,7 +79,7 @@ def unflow_line(line, delsp):
 
 def unflow_text(text, delsp):
     """
-    Unflow an e-mail message according to RFC 3637.
+    Unflows an e-mail message according to RFC 3637.
 
     :param text: The flowed message.
     :param delsp: Whether or not soft-break spaces should be deleted.
@@ -144,7 +144,9 @@ def message_to_text(message):
 
 def print_mailbox(mb, author):
     """
-    Print the contents of a mailbox to standard-out, excluding messages to 'author' and not from 'author'.
+    Prints the contents of a mailbox to standard-out.
+
+    Excludes messages to 'author' and not from 'author'.
 
     :param mb: Mailbox to print.
     :param author: Excludes messages to and not from this author.
