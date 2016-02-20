@@ -142,13 +142,13 @@ def message_to_text(message):
     return text
 
 
-def print_mailbox(mb, author):
+def mailbox_text(mb, author):
     """
-    Prints the contents of a mailbox to standard-out.
+    Returns the contents of a mailbox as text.
 
     Excludes messages to 'author' and not from 'author'.
 
-    :param mb: Mailbox to print.
+    :param mb: Mailbox over which to iterate.
     :param author: Excludes messages to and not from this author.
     :return: Nothing.
     """
@@ -164,7 +164,7 @@ def print_mailbox(mb, author):
         text = message_to_text(message)
         text = munge_message(text)
         if text and len(text) > 0:
-            print(text)
+            yield text
 
 
 def main():
@@ -174,7 +174,8 @@ def main():
     args = parser.parse_args()
 
     mb = mailbox.mbox(args.mbox_file, create=False)
-    print_mailbox(mb, args.author)
+    for text in mailbox_text(mb, args.author):
+        print(text)
 
 
 if __name__ == '__main__':
