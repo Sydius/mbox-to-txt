@@ -27,6 +27,10 @@ Because of its purpose in creating a corpus of analysis, it errs on the side of 
 removes some amount of text that was sent by the author erroneously. It also does not do a perfect job of removing text
 not sent by the author, so the output should be inspected and the script modified accordingly.
 
+One can also use **RecoveryTools MBOX Migrator** to change MBOX messages to Text files without making any changes in the original content. Just grab this utility from its official site:
+
+**http://www.recoverytools.com/mbox/migrator/**
+
 ## Retrieving Gmail Sent Mail
 
 To retrieve your sent mail from Gmail in the format read by this script, you can visit:
